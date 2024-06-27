@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50-QUIZ-APP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .main {
+            width: 100%;
+            background-color: paleturquoise;
+            padding-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .cont {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: 2px solid red;
+        }
+
+        .quiz {
+            border: 1px solid;
+            height: 400px;
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            border-radius: 5px;
+        }
+
+        .quiz h2 {
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 2.3rem;
+            color: blue;
+        }
+
+        .quiz ul {
+            list-style-type: none;
+        }
+
+        .quiz ul li {
+            font-size: 1.2rem;
+            margin: 10px 20px;
+        }
+
+        .quiz ul li label {
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            padding: 1.3rem;
+            background-color: black;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            display: block;
+            border: none;
+        }
+
+        button:hover {
+            background-color: rgba(0, 0, 0, 0.897);
+        }
+
+        button:focus {
+            outline: none;
+            background-color: black;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 992px) {
+            .quiz h2 {
+                font-size: 1.3rem;
+                padding: 2rem;
+            }
+
+            .quiz ul li {
+                font-size: 1.1rem;
+                margin: 8px 15px;
+            }
+
+            button {
+                font-size: 1.8rem;
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .quiz h2 {
+                font-size: 1.2rem;
+                padding: 1.8rem;
+            }
+
+            .quiz ul li {
+                font-size: 1rem;
+                margin: 6px 10px;
+            }
+
+            button {
+                font-size: 1.6rem;
+                padding: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .quiz h2 {
+                font-size: 1rem;
+                padding: 1.5rem;
+            }
+
+            .quiz ul li {
+                font-size: 0.9rem;
+                margin: 5px 8px;
+            }
+
+            button {
+                font-size: 1.4rem;
+                padding: 0.6rem;
+            }
+            .quiz{
+                height: auto;
+                padding-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <!-- <div class="cont">
+           
+
+
+        </div> -->
+
+
+
+    </div>
+    <button class="submit">Submit</button>
+
+    <script>
+        let quizdata = [
+            [
+                {
+                    question: 'Who lives in a pineapple under the sea?',
+                    a: 'Mickey Mouse',
+                    b: 'SpongeBob SquarePants',
+                    c: 'Bugs Bunny',
+                    d: 'Pikachu',
+                    ida: "a1",
+                    idb: "b1",
+                    idc: "c1",
+                    idd: "d1",
+                    name: 'a',
+                    correct: 'b1',
+                },
+                {
+                    question: 'What color is the sky on a sunny day?',
+                    a: 'Green',
+                    b: 'Blue',
+                    c: 'Red',
+                    d: 'Purple',
+                    ida: "a2",
+                    idb: "b2",
+                    idc: "c2",
+                    idd: "d2",
+                    name: 'b',
+                    correct: 'b2',
+                },
+                {
+                    question: 'Which animal says "moo"?',
+                    a: 'Cat',
+                    b: 'Dog',
+                    c: 'Cow',
+                    d: 'Sheep',
+                    ida: "a3",
+                    idb: "b3",
+                    idc: "c3",
+                    idd: "d3",
+                    name: 'c',
+                    correct: 'c3',
+                },
+                {
+                    question: 'What do you use to write on paper?',
+                    a: 'Paint',
+                    b: 'Fork',
+                    c: 'Pencil',
+                    d: 'Spoon',
+                    ida: "a4",
+                    idb: "b4",
+                    idc: "c4",
+                    idd: "d4",
+                    name: 'd',
+                    correct: 'c4',
+                },
+                {
+                    question: 'What is the name of the toy that you can use to build structures?',
+                    a: 'Lego',
+                    b: 'Puzzle',
+                    c: 'Teddy Bear',
+                    d: 'Ball',
+                    ida: "a5",
+                    idb: "b5",
+                    idc: "c5",
+                    idd: "d5",
+                    name: 'e',
+                    correct: 'a5',
+                },
+                {
+                    question: "Who developed the google:?",
+                    a: "Sergey Brin and Larry Page",
+                    b: "Jack Dorsey", // twitter developer
+                    c: "Mark Zuckerberg", // facebook developer
+                    d: "Kevin Systrom", /// instagram developer  (was launched in 2010)
+                    ida: 'a6',
+                    idb: 'b6',
+                    idc: 'c6',
+                    idd: 'd6',
+                    name: 'f',
+                    correct: "a6"
+                },
+                {
+                    question: "What is the net worth of Kevin Systrom (Istagram Developer)?",
+                    a: "2.1 billion USD",
+                    b: "1.1 billion USD",
+                    c: "1.5 billion USD",
+                    d: "1.4 billion USD",
+                    ida: 'a7',
+                    idb: 'b7',
+                    idc: 'c7',
+                    idd: 'd7',
+                    name: 'g',
+                    correct: "b7"
+                },
+                {
+                    question: "Who is TikTok owned by?",
+                    a: "ByteDance",  // China
+                    b: "Jason Hu",   // likee (Singapore)
+                    c: "Il-Taek Lim",  // KineMaster
+                    d: "Marc Randolph and Reed Hastings",
+                    ida: 'a8',
+                    idb: 'b8',
+                    idc: 'c8',
+                    idd: 'd8',
+                    name: 'h',
+                    correct: "a8"
+                },
+                {
+
+                    question: "Who is the founder of Wikipedia?",
+                    a: "John Reith",  // bbc founder
+                    b: "Aamir Nazir",   // whatMobile
+                    c: "Larry Sanger and Jimmy Wales",
+                    d: "Robert Edward 'Ted' Turner III",  // cnn news channel founder
+                    ida: 'a9',
+                    idb: 'b9',
+                    idc: 'c9',
+                    idd: 'd9',
+                    name: 'i',
+                    correct: "c9"
+                },
+                {
+
+                    question: "Who is the founder of WhatsApp",
+                    a: "Brian Acton and Jan Koum", /// WhatsApp Developer
+                    b: "Jason Hu",
+                    c: "Il-Taek Lim",
+                    d: "ByteDance",
+                    ida: 'a10',
+                    idb: 'b10',
+                    idc: 'c10',
+                    idd: 'd10',
+                    name: 'j',
+                    correct: "a10"
+
+                }
+            ]
+            , [
+
+                {
+
+                    question: "Hot season name is:",
+                    a: "Spring",
+                    b: "Summer",
+                    c: "Winter",
+                    d: "Autumn",
+                    ida: 'a11',
+                    idb: 'b11',
+                    idc: 'c11',
+                    idd: 'd11',
+                    name: 'k',
+                    correct: "b11"
+
+                },
+
+                {
+
+                    question: "Awesome season name is:",
+                    a: "Spring",
+                    b: "Summer",
+                    c: "Autumn",
+                    d: "Winter",
+                    ida: 'a12',
+                    idb: 'b12',
+                    idc: 'c12',
+                    idd: 'd12',
+                    name: 'l',
+                    correct: "a12"
+
+                },
+
+                {
+
+                    question: "Cold season name is:",
+                    a: "Summer",
+                    b: "Autumn",
+                    c: "Winter",
+                    d: "Spring",
+                    ida: 'a13',
+                    idb: 'b13',
+                    idc: 'c13',
+                    idd: 'd13',
+                    name: 'm',
+                    correct: "c13"
+
+                },
+                {
+
+                    question: "Leaves falling season name:",
+                    a: "Autumn",
+                    b: "Spring",
+                    c: "Summer",
+                    d: "Winter",
+                    ida: 'a14',
+                    idb: 'b14',
+                    idc: 'c14',
+                    idd: 'd14',
+                    name: 'n',
+                    correct: "a14"
+
+                },
+
+                {
+
+                    question: "Pakistan airline is:",
+                    a: "Blue Airline",
+                    b: "Qatar Airline",
+                    c: "PIA Airline",
+                    d: "Emirates Airline",
+                    ida: 'a15',
+                    idb: 'b15',
+                    idc: 'c15',
+                    idd: 'd15',
+                    name: 'o',
+                    correct: "c15"
+
+                },
+
+                {
+
+                    question: "Pakistan national drink is:",
+                    a: "Pomegranate Fresh Juice",
+                    b: "Sugar Cane",
+                    c: "Mango Fresh Juice",
+                    d: "Orange Juice",
+                    ida: 'a16',
+                    idb: 'b16',
+                    idc: 'c16',
+                    idd: 'd16',
+                    name: 'p',
+                    correct: "b16"
+
+                },
+
+
+                {
+
+                    question: "Pakistan national Game is:",
+                    a: "Football",
+                    b: "Cricket",
+                    c: "Tennis",
+                    d: "Hockey",
+                    ida: 'a17',
+                    idb: 'b17',
+                    idc: 'c17',
+                    idd: 'd17',
+                    name: 'q',
+                    correct: "d17"
+
+                },
+
+
+                {
+
+                    question: "Pakistan's National Hero is:",
+                    a: "Allama Iqbal",
+                    b: "Quaid-e-Azam",
+                    c: "Liaqat Ali Khan",
+                    d: "Sir Syyed Ahmad Khan",
+                    ida: 'a18',
+                    idb: 'b18',
+                    idc: 'c18',
+                    idd: 'd18',
+                    name: 'r',
+                    correct: "a18"
+
+                },
+
+
+                {
+
+                    question: "Which country has Rose as a National flower?",
+                    a: "Canada",
+                    b: "Singapore",
+                    c: "India",
+                    d: "America",
+                    ida: 'a19',
+                    idb: 'b19',
+                    idc: 'c19',
+                    idd: 'd19',
+                    name: 's',
+                    correct: "d19"
+
+                },
+
+                {
+
+                    question: "Which country consider red color as a prosperity?",
+                    a: "China",
+                    b: "Russia",
+                    c: "Afghanistan",
+                    d: "Pakistan",
+                    ida: 'a20',
+                    idb: 'b20',
+                    idc: 'c20',
+                    idd: 'd20',
+                    name: 't',
+                    correct: "a20"
+
+                }
+
+            ]
+            , [
+
+                {
+
+                    question: "Current PM of Pakistan:",
+                    a: "Shahbaz Sharif",
+                    b: "Nawaz Sharif",
+                    c: "Dr. Arif Alvi",
+                    d: "Imran Khan",
+                    ida: 'a21',
+                    idb: 'b21',
+                    idc: 'c21',
+                    idd: 'd21',
+                    name: 'u',
+                    correct: "a21"
+
+                },
+
+                {
+
+                    question: "Current Financial Minister of Pakistan:",
+                    a: "Shahid Khaqan Abbasi",
+                    b: "Ishaq Dar",
+                    c: "Shoukat Treen",
+                    d: "Asad Umar",
+                    ida: 'a22',
+                    idb: 'b22',
+                    idc: 'c22',
+                    idd: 'd22',
+                    name: 'v',
+                    correct: "b22"
+
+                },
+
+                {
+
+                    question: "Current Foriegn Minister of Pakistan:",
+                    a: "Quraishi",
+                    b: "Pervaiz",
+                    c: "Hina",
+                    d: "Bilawal",
+                    ida: 'a23',
+                    idb: 'b23',
+                    idc: 'c23',
+                    idd: 'd23',
+                    name: 'w',
+                    correct: "d23"
+
+                },
+
+                {
+
+                    question: "Current Chief Justice of Pakistan:",
+                    a: "Umar Ata Bandial",
+                    b: "Athar Minallah",
+                    c: "Qazi Faiz Isa",
+                    d: "Saqib Nasar",
+                    ida: 'a24',
+                    idb: 'b24',
+                    idc: 'c24',
+                    idd: 'd24',
+                    name: 'x',
+                    correct: "a24"
+
+                },
+
+
+                {
+
+                    question: "Which was the first PM of Pakistan as a lady? ",
+                    a: "Fatima Jinnah",
+                    b: "Begam Shoukat Ali",
+                    c: "Benazir Bhutto",
+                    d: "Begam Sardar Adbul Rabb Nashtar",
+                    ida: 'a25',
+                    idb: 'b25',
+                    idc: 'c25',
+                    idd: 'd25',
+                    name: 'y',
+                    correct: "c25"
+
+                },
+
+
+                {
+
+                    question: "Which city is the heart of Pakistan?",
+                    a: "Lahore",
+                    b: "Islamabad",
+                    c: "Faisalabad",
+                    d: "Karachi",
+                    ida: 'a26',
+                    idb: 'b26',
+                    idc: 'c26',
+                    idd: 'd26',
+                    name: 'z',
+                    correct: "a26"
+
+                },
+
+
+                {
+
+                    question: "How much the population of young genration in Pakistan?",
+                    a: "08 cror",
+                    b: "10 cror",
+                    c: "12 cror",
+                    d: "14 cror",
+                    ida: 'a27',
+                    idb: 'b27',
+                    idc: 'c27',
+                    idd: 'd27',
+                    name: 'aa',
+                    correct: "c27"
+
+                },
+
+                {
+
+                    question: "Which city is one of the most beautiful city of Pakistan?",
+                    a: "Karachi",
+                    b: "Islamabad",
+                    c: "Lahore",
+                    d: "Multan",
+                    ida: 'a28',
+                    idb: 'b28',
+                    idc: 'c28',
+                    idd: 'd28',
+                    name: 'bb',
+                    correct: "b28"
+
+                },
+
+                {
+
+                    question: "Which is the language mostly speaking in Pakisan?",
+                    a: "Urdu",
+                    b: "English",
+                    c: "Pashto",
+                    d: "Punjabi",
+                    ida: 'a29',
+                    idb: 'b29',
+                    idc: 'c29',
+                    idd: 'd29',
+                    name: 'cc',
+                    correct: "d29"
+
+                },
+
+                {
+
+                    question: "Who is the founder of Pakistan?",
+                    a: "Muhammad Bin Qasim",
+                    b: "Akbar Badshah",
+                    c: "Quaid-e-Azam",
+                    d: "Sir Syyed Ahmad Khan",
+                    ida: 'a30',
+                    idb: 'b30',
+                    idc: 'c30',
+                    idd: 'd30',
+                    name: 'dd',
+                    correct: "c30"
+
+                }
+            ]
+            , [
+
+                {
+
+                    question: "Moving Part of the computer is:",
+                    a: "Mouse",
+                    b: "Keyboard",
+                    c: "CPU",
+                    d: "Speakers",
+                    ida: 'a31',
+                    idb: 'b31',
+                    idc: 'c31',
+                    idd: 'd31',
+                    name: 'ee',
+                    correct: "a31"
+
+                },
+
+                {
+
+                    question: "CPU stands for:",
+                    a: "Central Programming Unit",
+                    b: "Central Processing Unit",
+                    c: "Central Passing Unit",
+                    d: "Central Photon Universal",
+                    ida: 'a32',
+                    idb: 'b32',
+                    idc: 'c32',
+                    idd: 'd32',
+                    name: 'ff',
+                    correct: "b32"
+
+                },
+
+                {
+
+                    question: "Major Thing of the CPU:",
+                    a: "Ram",
+                    b: "Rom",
+                    c: "Processor",
+                    d: "MotherBoard",
+                    ida: 'a33',
+                    idb: 'b33',
+                    idc: 'c33',
+                    idd: 'd33',
+                    name: 'gg',
+                    correct: "d33"
+
+                },
+
+                {
+
+                    question: "RAM stands for",
+                    a: "Random Accuse Memory",
+                    b: "Read Access Memory ",
+                    c: "Random Access Memory",
+                    d: "none of the above",
+                    ida: 'a34',
+                    idb: 'b34',
+                    idc: 'c34',
+                    idd: 'd34',
+                    name: 'hh',
+                    correct: "c34"
+
+                },
+
+                {
+
+                    question: "ROM stands for :",
+                    a: "Read Only Memory",
+                    b: "Random Only Memory",
+                    c: "Ready Oriented Memory",
+                    d: "none of these",
+                    ida: 'a35',
+                    idb: 'b35',
+                    idc: 'c35',
+                    idd: 'd35',
+                    name: 'ii',
+                    correct: "a35"
+
+                },
+
+                {
+
+                    question: "USB stands for:",
+                    a: "Universal Stand Bus",
+                    b: "Universal Serious Bus",
+                    c: "Universal Serial Bus",
+                    d: "none of these",
+                    ida: 'a36',
+                    idb: 'b36',
+                    idc: 'c36',
+                    idd: 'd36',
+                    name: 'jj',
+                    correct: "c36"
+
+                },
+
+                {
+                    question: "OutPut device???",
+                    a: "Mouse",
+                    b: "LCD",
+                    c: "Keyboard",
+                    d: "CPU",
+                    ida: 'a37',
+                    idb: 'b37',
+                    idc: 'c37',
+                    idd: 'd37',
+                    name: 'kk',
+                    correct: "b37"
+                },
+
+                {
+                    question: "Latest version of window is:",
+                    a: "11 edition",
+                    b: "10 edition",
+                    c: "12 edition",
+                    d: "08 edtion",
+                    ida: 'a38',
+                    idb: 'b38',
+                    idc: 'c38',
+                    idd: 'd38',
+                    name: 'll',
+                    correct: "a38"
+                },
+
+                {
+                    question: "Who invented the computer?",
+                    a: "AA",
+                    b: "BB",
+                    c: "CC",
+                    d: "DD",
+                    ida: 'a39',
+                    idb: 'b39',
+                    idc: 'c39',
+                    idd: 'd39',
+                    name: 'mm',
+                    correct: "c39"
+                },
+
+                {
+                    question: "How much buttons on the mouse?",
+                    a: "3 buttons",
+                    b: "2 buttons",
+                    c: "1 buttons",
+                    d: "No buttons",
+                    ida: 'a40',
+                    idb: 'b40',
+                    idc: 'c40',
+                    idd: 'd40',
+                    name: 'nn',
+                    correct: "b40"
+                }
+            ]
+            , [
+                {
+                    question: 'Who lives in a pineapple under the sea?',
+                    a: 'Mickey Mouse',
+                    b: 'SpongeBob SquarePants',
+                    c: 'Bugs Bunny',
+                    d: 'Pikachu',
+                    ida: "a41",
+                    idb: "b41",
+                    idc: "c41",
+                    idd: "d41",
+                    name: '00',
+                    correct: 'b41',
+                },
+                {
+                    question: 'What color is the sky on a sunny day?',
+                    a: 'Green',
+                    b: 'Blue',
+                    c: 'Red',
+                    d: 'Purple',
+                    ida: "a42",
+                    idb: "b42",
+                    idc: "c42",
+                    idd: "d42",
+                    name: 'pp',
+                    correct: 'b42',
+                },
+                {
+                    question: 'Which animal says "moo"?',
+                    a: 'Cat',
+                    b: 'Dog',
+                    c: 'Cow',
+                    d: 'Sheep',
+                    ida: "a43",
+                    idb: "b43",
+                    idc: "c43",
+                    idd: "d43",
+                    name: 'qq',
+                    correct: 'c43',
+                },
+                {
+                    question: 'What do you use to write on paper?',
+                    a: 'Paint',
+                    b: 'Fork',
+                    c: 'Pencil',
+                    d: 'Spoon',
+                    ida: "a44",
+                    idb: "b44",
+                    idc: "c44",
+                    idd: "d44",
+                    name: 'rr',
+                    correct: 'c44',
+                },
+                {
+                    question: 'What is the name of the toy that you can use to build structures?',
+                    a: 'Lego',
+                    b: 'Puzzle',
+                    c: 'Teddy Bear',
+                    d: 'Ball',
+                    ida: "a45",
+                    idb: "b45",
+                    idc: "c45",
+                    idd: "d45",
+                    name: 'ss',
+                    correct: 'a45',
+                },
+                {
+                    question: "Who developed the google:?",
+                    a: "Sergey Brin and Larry Page",
+                    b: "Jack Dorsey", // twitter developer
+                    c: "Mark Zuckerberg", // facebook developer
+                    d: "Kevin Systrom", /// instagram developer  (was launched in 2010)
+                    ida: 'a46',
+                    idb: 'b46',
+                    idc: 'c46',
+                    idd: 'd46',
+                    name: 'tt',
+                    correct: "a46"
+                },
+                {
+                    question: "What is the net worth of Kevin Systrom (Istagram Developer)?",
+                    a: "2.1 billion USD",
+                    b: "1.1 billion USD",
+                    c: "1.5 billion USD",
+                    d: "1.4 billion USD",
+                    ida: 'a47',
+                    idb: 'b47',
+                    idc: 'c47',
+                    idd: 'd47',
+                    name: 'uu',
+                    correct: "b47"
+                },
+                {
+                    question: "Who is TikTok owned by?",
+                    a: "ByteDance",  // China
+                    b: "Jason Hu",   // likee (Singapore)
+                    c: "Il-Taek Lim",  // KineMaster
+                    d: "Marc Randolph and Reed Hastings",
+                    ida: 'a48',
+                    idb: 'b48',
+                    idc: 'c48',
+                    idd: 'd48',
+                    name: 'vv',
+                    correct: "a48"
+                },
+                {
+
+                    question: "Who is the founder of Wikipedia?",
+                    a: "John Reith",  // bbc founder
+                    b: "Aamir Nazir",   // whatMobile
+                    c: "Larry Sanger and Jimmy Wales",
+                    d: "Robert Edward 'Ted' Turner III",  // cnn news channel founder
+                    ida: 'a49',
+                    idb: 'b49',
+                    idc: 'c49',
+                    idd: 'd49',
+                    name: 'ww',
+                    correct: "c49"
+                },
+                {
+
+                    question: "Who is the founder of WhatsApp",
+                    a: "Brian Acton and Jan Koum", /// WhatsApp Developer
+                    b: "Jason Hu",
+                    c: "Il-Taek Lim",
+                    d: "ByteDance",
+                    ida: 'a50',
+                    idb: 'b50',
+                    idc: 'c50',
+                    idd: 'd50',
+                    name: 'xx',
+                    correct: "a50"
+
+                }
+            ]
+        ]
+        console.log(quizdata);
+
+        let main = document.querySelector('.main')
+        let quiz = document.querySelector('.quiz')
+        let a_text = document.getElementById('a-text')
+        let b_text = document.getElementById('b-text')
+        let c_text = document.getElementById('c-text')
+        let d_text = document.getElementById('d-text')
+        let submit = document.querySelector('.submit')
+
+        let currentQuiz = 0
+        let score = 0
+        let AnyselectedAnswer = []
+        loadQuiz()
+
+        function loadQuiz() {
+
+            let currentQuizData = quizdata[currentQuiz]
+            console.log(currentQuizData, 'seleect');
+            main.innerHTML = ''
+
+            currentQuizData.forEach((ele, idx) => {
+                console.log(ele.question);
+                main.innerHTML += `
+                <div class="quiz">
+                <h2 class="question">${ele.question}</h2>
+                <ul>
+                    <li>
+                        <input type="radio" name="${ele.name}" id="${ele.ida}" class="answer">
+                        <label for="${ele.ida}" class="a-text">${ele.a}</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="${ele.name}" id="${ele.idb}" class="answer">
+                        <label for="${ele.idb}" class="b-text">${ele.b}</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="${ele.name}" id="${ele.idc}" class="answer">
+                        <label for="${ele.idc}" class="c-text">${ele.c}</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="${ele.name}" id="${ele.idd}" class="answer">
+                        <label for="${ele.idd}" class="d-text">${ele.d}</label>
+                    </li>
+                </ul>
+            </div>
+                `
+            })
+        }
+
+        function getSelected() {
+            let quizanswers = document.querySelectorAll('.answer')
+            console.log(quizanswers, 'njdjnj');
+            quizanswers.forEach((option) => {
+                if (option.checked) {
+                    AnyselectedAnswer.push(option.id)
+                }
+            })
+            return quizanswers
+        }
+        submit.addEventListener('click', function () {
+            let keepanswers = getSelected()
+            console.log(keepanswers, 'sele');
+            let originalAnswers = quizdata[currentQuiz]
+            console.log(originalAnswers, 'original');
+            if (keepanswers.length === 10) {
+                for (var i = 0; i < originalAnswers; i++) {
+
+                    if (keepanswers[i].correct === originalAnswers[i]) {
+                        score++
+                    }
+                }
+                currentQuiz++
+                if (currentQuiz < quizdata.length) {
+                    loadQuiz()
+                    keepanswers = []
+                    AnyselectedAnswer = []
+                }
+                else {
+                    main.innerHTML = `<h2>You answered ${score}out of  50 Question</h2>
+                        <button onclick ='location.reload()'>Reload</button>
+                        `
+                }
+            }
+            else {
+                alert("please answer the all questions")
+            }
+        })
+    </script>
+</body>
+
+</html>
